@@ -1,0 +1,528 @@
+{% extends "remoteController/header.html" %}
+
+{% block content %}
+
+<style>
+/* slider */
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+/* Mouse Grid */
+
+.parent {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.div1 { grid-area: 1 / 2 / 2 / 3; }
+.div2 { grid-area: 2 / 1 / 3 / 2; }
+.div3 { grid-area: 2 / 3 / 3 / 4; }
+.div4 { grid-area: 3 / 2 / 4 / 3; }
+.div5 { grid-area: 4 / 3 / 5 / 4; }
+.div6 { grid-area: 5 / 3 / 6 / 4; }
+.div7 { grid-area: 4 / 1 / 5 / 2; }
+.div8 { grid-area: 5 / 1 / 6 / 2; }
+
+/* Keyboard Grid */
+
+.parent_keyboard {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.div1_keyboard { grid-area: 2 / 1 / 3 / 4; }
+.div2_keyboard { grid-area: 1 / 1 / 2 / 2; }
+.div3_keyboard { grid-area: 1 / 3 / 2 / 4; }
+.div4_keyboard { grid-area: 3 / 2 / 4 / 3; }
+.div5_keyboard { grid-area: 5 / 2 / 6 / 3; }
+.div6_keyboard { grid-area: 4 / 1 / 5 / 2; }
+.div7_keyboard { grid-area: 4 / 3 / 5 / 4; }
+
+/* Shortcuts Grid */
+
+.parent_shortcut {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.div1_shortcut { grid-area: 1 / 1 / 2 / 2; }
+.div2_shortcut { grid-area: 1 / 2 / 2 / 3; }
+.div3_shortcut { grid-area: 1 / 3 / 2 / 4; }
+.div4_shortcut { grid-area: 2 / 1 / 3 / 2; }
+.div5_shortcut { grid-area: 2 / 2 / 3 / 3; }
+.div6_shortcut { grid-area: 2 / 3 / 3 / 4; }
+.div7_shortcut { grid-area: 3 / 1 / 4 / 2; }
+.div8_shortcut { grid-area: 3 / 2 / 4 / 3; }
+.div9_shortcut { grid-area: 3 / 3 / 4 / 4; }
+.div10_shortcut { grid-area: 4 / 1 / 5 / 2; }
+.div11_shortcut { grid-area: 4 / 2 / 5 / 3; }
+.div12_shortcut { grid-area: 4 / 3 / 5 / 4; }
+.div13_shortcut { grid-area: 5 / 1 / 6 / 2; }
+.div14_shortcut { grid-area: 5 / 2 / 6 / 3; }
+.div15_shortcut { grid-area: 5 / 3 / 6 / 4; }
+
+
+/* Mouse Button Circles */
+
+.Mouse {
+  font-size:37px;
+  display:block;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+/* Arrow Button Circles */
+
+.Arrow {
+  font-size:37px;
+  display:block;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+/* Shortcuts Button Circles */
+
+.Shortcuts {
+  font-size:37px;
+  display:block;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+/* Form Send Button */
+
+.button_Form {
+  display: inline-block;
+  padding: 15px 25px;
+  width: 25%;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  //background-color: #4CAF50;
+  background-color: #ee6e73;
+  //#b55155
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+//.button_Form:hover {background-color: #3e8e41}
+.button_Form:hover {background-color: #d9454b}
+
+.button_Form:active {
+  //background-color: #3e8e41;
+  background-color: #d9454b;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.backgroundForm{
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ee6e73;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+</style>
+<!--<meta name="viewport" content="width=device-width, user-scalable=no">-->
+<meta name="viewport" content="width=device-width, initial-scale=0.35, maximum-scale=0.35, user-scalable=no"/>
+
+<nav>
+    <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a href="#keyboardTab" onclick="openCity(event, 'keyboardTab')">keyboardTab</a></li>
+            <li class="tab"><a href="#mouseTab" onclick="openCity(event, 'mouseTab')">mouseTab</a></li>
+            <li class="tab"><a href="#shorcutsTab" onclick="openCity(event, 'shorcutsTab')">shorcutsTab</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+
+
+
+
+
+</script>
+
+<div id="keyboardTab" class="tabcontent">
+    <h1>Keyboard</h1>
+
+    <h1>Arrows</h1>
+    <div class="parent_keyboard">
+        <div class="div1_keyboard">
+            <div>
+                <form action="/likePost" method="GET" id="post-form">
+                    <h2 align="center" for="fname"><b>Text:</b></h2>
+                    <div class="backgroundForm"><input type="text" id="fname" name="fname"></div>
+                    <button class="button_Form" type="submit" value="Submit">Send</button>
+                </form>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+                <script type="text/javascript">
+
+                    // Submit post on submit
+                    $('#post-form').on('submit', function(event){
+                        event.preventDefault();
+                        console.log("form submitted!")  // sanity check
+                        create_post();
+                    });
+
+                    // AJAX for posting
+                    function create_post() {
+                        console.log("create post is working!") // sanity check
+                        console.log($('#fname').val())
+                         $.ajax({
+                            url : "likepost", // the endpoint
+                            type : "GET", // http method
+                            data : { fname : $('#fname').val() }, // data sent with the post request
+
+                            // handle a successful response
+                            success : function(json) {
+                                $('#post-text').val(''); // remove the value from the input
+                                console.log(json); // log the returned json to the console
+                                console.log("success"); // another sanity check
+                            },
+
+                            // handle a non-successful response
+                            error : function(xhr,errmsg,err) {
+                                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                                    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                            }
+                        });
+                    };
+
+
+
+
+
+
+
+                </script>
+            </div>
+        </div>
+        <div class="div2_keyboard">
+            <button class="Arrow" id="Backspace" href="#" data-catid-keyboard="Backspace">Backspace</button>
+        </div>
+        <div class="div3_keyboard">
+            <button class="Arrow" id="Enter" href="#" data-catid-keyboard="Enter">Enter</button>
+        </div>
+        <div class="div4_keyboard">
+            <button class="Arrow" id="ArrowUP" href="#" data-catid-keyboard="ArrowUP">ArrowUP</button>
+        </div>
+        <div class="div5_keyboard">
+            <button class="Arrow" id="ArrowDOWN" href="#" data-catid-keyboard="ArrowDOWN">ArrowDOWN</button>
+        </div>
+        <div class="div6_keyboard">
+            <button class="Arrow" id="ArrowLEFT" href="#" data-catid-keyboard="ArrowLEFT">ArrowLEFT</button>
+        </div>
+        <div class="div7_keyboard">
+            <button class="Arrow" id="ArrowRIGHT" href="#" data-catid-keyboard="ArrowRIGHT">ArrowRIGHT</button>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('.Arrow').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid-keyboard");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost",
+        data:{
+            post_id: catid,
+        },
+        success: function( data )
+        {
+            //$( '#like'+ catid ).remove();
+            //$( '#message' ).text(data);
+        }
+     })
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+</div>
+
+<div id="mouseTab" class="tabcontent">
+    <!--joystick maybe como é que iria aceder à info e enviar os dados...
+    https://yoannmoi.net/nipplejs/
+    https://codepen.io/YoannM/pen/gapmMG
+    https://jsfiddle.net/aa0et7tr/5/
+    http://jeromeetienne.github.io/virtualjoystick.js/examples/basic.html
+    -->
+    <h1>Mouse</h1>
+    <div class="slidecontainer">
+        <h3>Speed Slider Value: <span id="sliderValueOut"></span></h3>
+        <input type="range" min="1" max="500" value="250" class="slider" id="myRange">
+
+    </div>
+
+    <script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("sliderValueOut");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+    <div class="parent">
+        <div class="div1">
+            <button class="Mouse" id="MouseUP" href="#" data-catid="MouseUP">MouseUP</button>
+        </div>
+        <div class="div2">
+            <button class="Mouse" id="MouseLEFT" href="#" data-catid="MouseLEFT">MouseLEFT</button>
+        </div>
+        <div class="div3">
+            <button class="Mouse" id="MouseRIGHT" href="#" data-catid="MouseRIGHT">MouseRIGHT</button>
+        </div>
+        <div class="div4">
+            <button class="Mouse" id="MouseDOWN" href="#" data-catid="MouseDOWN">MouseDOWN</button>
+        </div>
+        <div class="div5">
+            <button class="Mouse" id="ClickLEFT" href="#" data-catid="ClickLEFT">ClickLEFT</button>
+        </div>
+        <div class="div6">
+            <button class="Mouse" id="ClickRIGHT" href="#" data-catid="ClickRIGHT">ClickRIGHT</button>
+        </div>
+        <div class="div7">
+            <button class="Mouse" id="ScrollUP" href="#" data-catid="ScrollUP">ScrollUP</button>
+        </div>
+        <div class="div8">
+            <button class="Mouse" id="ScrollDOWN" href="#" data-catid="ScrollDOWN">ScrollDOWN</button>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('.Mouse').click(function(){
+    var catid,speedV;
+    catid = $(this).attr("data-catid");
+    speedV = $("#myRange").val();
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost",
+        data:{
+            post_id: catid,
+            speed: speedV
+        },
+        success: function( data )
+        {
+            //$( '#like'+ catid ).remove();
+            //$( '#message' ).text(data);
+        }
+     })
+    });
+    </script>
+</div>
+
+<div id="shorcutsTab" class="tabcontent">
+    <h1>Shorcuts</h1>
+
+    X ESC -> por no keyboard
+    X SPACE -> por no keyboard também ?
+    X VOLUME ->
+    X CTRL+A
+    X CTRL+Z
+
+    X CTRL+TAB
+    X CTRL+SHIFT+TAB
+
+    X WINDOWS+DOWN
+    ALT+TAB
+    X CTRL+T -> open new tab
+    X CTRL+W -> close tab
+
+
+    ter uma tab propria para o youtube ?
+    X -JKL -> back 10 / pause / foward 10
+    X F -> full screen
+
+    Mudar aspeto para ficar mais bonito ?
+    Por num outro projeto... e no GitHub...
+    tabs especificas para outras coisas ?
+    #TODO: fazer certos circulos mais pequenos para evitar carregar neles sem querer... (como CTRL+W)
+    tamanho dos circulos em shortcuts pode ser mais pequeno... ?
+
+    add profiles ?
+    para jogos e assim?
+    \-> assim o menu de tabs não ia ficar tão cheio de coisas :/
+
+    <div class="parent_shortcut">
+        <div class="div1_shortcut">
+            <button class="Shortcuts" id="a" href="#" data-catid-shortcut="a">CTRL+W</button>
+        </div>
+        <div class="div2_shortcut">
+            <button class="Shortcuts" id="b" href="#" data-catid-shortcut="b">CTRL+T</button>
+        </div>
+        <div class="div3_shortcut">
+            <button class="Shortcuts" id="c" href="#" data-catid-shortcut="c">ESC</button>
+        </div>
+        <div class="div4_shortcut">
+            <button class="Shortcuts" id="d" href="#" data-catid-shortcut="d">ALT+TAB</button>
+        </div>
+        <div class="div5_shortcut">
+            <button class="Shortcuts" id="e" href="#" data-catid-shortcut="e">CTRL+S+TAB</button>
+        </div>
+        <div class="div6_shortcut">
+            <button class="Shortcuts" id="f" href="#" data-catid-shortcut="f">CTRL+TAB</button>
+        </div>
+        <div class="div7_shortcut">
+            <button class="Shortcuts" id="g" href="#" data-catid-shortcut="g">CTRL+A</button>
+        </div>
+        <div class="div8_shortcut">
+            <button class="Shortcuts" id="t" href="#" data-catid-shortcut="t">WIN+DOWN</button>
+        </div>
+        <div class="div9_shortcut">
+            <button class="Shortcuts" id="y" href="#" data-catid-shortcut="y">Vol Up</button>
+        </div>
+        <div class="div10_shortcut">
+            <button class="Shortcuts" id="u" href="#" data-catid-shortcut="u">CTRL+Z</button>
+        </div>
+        <div class="div11_shortcut">
+            <button class="Shortcuts" id="i" href="#" data-catid-shortcut="i">F</button>
+        </div>
+        <div class="div12_shortcut">
+            <button class="Shortcuts" id="j" href="#" data-catid-shortcut="j">Vol Down</button>
+        </div>
+        <div class="div13_shortcut">
+            <button class="Shortcuts" id="m" href="#" data-catid-shortcut="m">J</button>
+        </div>
+        <div class="div14_shortcut">
+            <button class="Shortcuts" id="n" href="#" data-catid-shortcut="n">L</button>
+        </div>
+        <div class="div15_shortcut">
+            <button class="Shortcuts" id="v" href="#" data-catid-shortcut="v">SPACE</button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('.Shortcuts').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid-shortcut");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost",
+        data:{
+            post_id: catid,
+        },
+        success: function( data )
+        {
+            //$( '#like'+ catid ).remove();
+            //$( '#message' ).text(data);
+        }
+     })
+    });
+    </script>
+
+</div>
+
+{% endblock %}

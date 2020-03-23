@@ -1,6 +1,11 @@
 # Created by https://www.gitignore.io/api/django,python,pycharm
 # Edit at https://www.gitignore.io/?templates=django,python,pycharm
 
+### Secret Stuff and others ###
+secret_secrets.txt
+venv
+.idea
+
 ### Django ###
 *.log
 *.pot

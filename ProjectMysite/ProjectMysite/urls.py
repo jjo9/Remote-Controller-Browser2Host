@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
+    path('', include('remoteController.urls')), # este está a apontar apra o APP "main" uma vez que o path faz match de estar bazio ele vai para aquele ficheiro
     path('admin/', admin.site.urls),
 ]

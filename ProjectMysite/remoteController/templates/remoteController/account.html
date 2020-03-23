@@ -1,0 +1,15 @@
+{% extends "remoteController/header.html" %}
+
+{% block content %}
+
+<h1>My account info</h1>
+<h2>display user private info</h2>
+
+{% if user.is_authenticated %}
+<h5>username: {{user.username}}</h5>
+<h5>email: {{user.email}}</h5>
+{% else %}
+<h5>Needs to login first</h5>
+{% endif %}
+
+{% endblock %}
