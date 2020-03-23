@@ -25,7 +25,7 @@ def account(request):
     return render(request=request,
                   template_name="remoteController/account.html",
                   # context={"categories":TutorialCategory.objects.all}
-                  ) 
+                  )
 
 
 def register(request):
@@ -135,6 +135,40 @@ def likePost(request):
             AG.scroll(clicks=int(speed * 2))
         elif post_id == 'ScrollDOWN':
             AG.scroll(clicks=int(-speed * 2))
+        elif post_id == 'CTRL_W':
+            AG.hotkey('ctrl', 'w')
+        elif post_id == 'CTRL_T':
+            AG.hotkey('ctrl', 't')
+        elif post_id == 'ESC':
+            AG.press('ESC')
+        elif post_id == 'ALT_TAB':
+            AG.hotkey('alt', 'tab')
+        elif post_id == 'CTRL_SHIFT_TAB':
+            AG.hotkey('ctrl', 'shift', 'tab')
+        elif post_id == 'CTRL_TAB':
+            AG.hotkey('ctrl', 'tab')
+        elif post_id == 'CTRL_A':
+            AG.hotkey('ctrl', 'a')
+        elif post_id == 'WIN_DOWN':
+            AG.hotkey('win', 'down')
+        elif post_id == 'Vol_Up':
+            AG.keyDown('fn')
+            AG.press('right')
+            AG.keyUp('fn')
+        elif post_id == 'CTRL_Z':
+            AG.hotkey('ctrl', 'z')
+        elif post_id == 'F':
+            AG.press('f')
+        elif post_id == 'Vol_Down':
+            AG.keyDown('fn')
+            AG.press('left')
+            AG.keyUp('fn')
+        elif post_id == 'J':
+            AG.press('j')
+        elif post_id == 'L':
+            AG.press('l')
+        elif post_id == 'SPACE':
+            AG.press('space')
 
         return HttpResponse("Success!")  # Sending an success response
     else:

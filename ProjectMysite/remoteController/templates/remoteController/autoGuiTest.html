@@ -45,8 +45,8 @@
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(5, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+grid-column-gap: 10px;
+grid-row-gap: 10px;
 }
 
 .div1 { grid-area: 1 / 2 / 2 / 3; }
@@ -64,8 +64,8 @@ grid-row-gap: 0px;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(5, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+grid-column-gap: 10px;
+grid-row-gap: 10px;
 }
 
 .div1_keyboard { grid-area: 2 / 1 / 3 / 4; }
@@ -82,8 +82,8 @@ grid-row-gap: 0px;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(5, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+grid-column-gap: 10px;
+grid-row-gap: 10px;
 }
 
 .div1_shortcut { grid-area: 1 / 1 / 2 / 2; }
@@ -268,32 +268,26 @@ function openCity(evt, cityName) {
                         });
                     };
 
-
-
-
-
-
-
                 </script>
             </div>
         </div>
         <div class="div2_keyboard">
-            <button class="Arrow" id="Backspace" href="#" data-catid-keyboard="Backspace">Backspace</button>
+            <button class="Arrow" id="Backspace" data-catid-keyboard="Backspace">Backspace</button>
         </div>
         <div class="div3_keyboard">
-            <button class="Arrow" id="Enter" href="#" data-catid-keyboard="Enter">Enter</button>
+            <button class="Arrow" id="Enter" data-catid-keyboard="Enter">Enter</button>
         </div>
         <div class="div4_keyboard">
-            <button class="Arrow" id="ArrowUP" href="#" data-catid-keyboard="ArrowUP">ArrowUP</button>
+            <button class="Arrow" id="ArrowUP" data-catid-keyboard="ArrowUP">ArrowUP</button>
         </div>
         <div class="div5_keyboard">
-            <button class="Arrow" id="ArrowDOWN" href="#" data-catid-keyboard="ArrowDOWN">ArrowDOWN</button>
+            <button class="Arrow" id="ArrowDOWN" data-catid-keyboard="ArrowDOWN">ArrowDOWN</button>
         </div>
         <div class="div6_keyboard">
-            <button class="Arrow" id="ArrowLEFT" href="#" data-catid-keyboard="ArrowLEFT">ArrowLEFT</button>
+            <button class="Arrow" id="ArrowLEFT" data-catid-keyboard="ArrowLEFT">ArrowLEFT</button>
         </div>
         <div class="div7_keyboard">
-            <button class="Arrow" id="ArrowRIGHT" href="#" data-catid-keyboard="ArrowRIGHT">ArrowRIGHT</button>
+            <button class="Arrow" id="ArrowRIGHT" data-catid-keyboard="ArrowRIGHT">ArrowRIGHT</button>
         </div>
     </div>
 
@@ -373,28 +367,28 @@ function openCity(evt, cityName) {
 
     <div class="parent">
         <div class="div1">
-            <button class="Mouse" id="MouseUP" href="#" data-catid="MouseUP">MouseUP</button>
+            <button class="Mouse" id="MouseUP" data-catid="MouseUP">MouseUP</button>
         </div>
         <div class="div2">
-            <button class="Mouse" id="MouseLEFT" href="#" data-catid="MouseLEFT">MouseLEFT</button>
+            <button class="Mouse" id="MouseLEFT" data-catid="MouseLEFT">MouseLEFT</button>
         </div>
         <div class="div3">
-            <button class="Mouse" id="MouseRIGHT" href="#" data-catid="MouseRIGHT">MouseRIGHT</button>
+            <button class="Mouse" id="MouseRIGHT" data-catid="MouseRIGHT">MouseRIGHT</button>
         </div>
         <div class="div4">
-            <button class="Mouse" id="MouseDOWN" href="#" data-catid="MouseDOWN">MouseDOWN</button>
+            <button class="Mouse" id="MouseDOWN" data-catid="MouseDOWN">MouseDOWN</button>
         </div>
         <div class="div5">
-            <button class="Mouse" id="ClickLEFT" href="#" data-catid="ClickLEFT">ClickLEFT</button>
+            <button class="Mouse" id="ClickLEFT" data-catid="ClickLEFT">ClickLEFT</button>
         </div>
         <div class="div6">
-            <button class="Mouse" id="ClickRIGHT" href="#" data-catid="ClickRIGHT">ClickRIGHT</button>
+            <button class="Mouse" id="ClickRIGHT" data-catid="ClickRIGHT">ClickRIGHT</button>
         </div>
         <div class="div7">
-            <button class="Mouse" id="ScrollUP" href="#" data-catid="ScrollUP">ScrollUP</button>
+            <button class="Mouse" id="ScrollUP" data-catid="ScrollUP">ScrollUP</button>
         </div>
         <div class="div8">
-            <button class="Mouse" id="ScrollDOWN" href="#" data-catid="ScrollDOWN">ScrollDOWN</button>
+            <button class="Mouse" id="ScrollDOWN" data-catid="ScrollDOWN">ScrollDOWN</button>
         </div>
     </div>
 
@@ -436,7 +430,7 @@ function openCity(evt, cityName) {
     X CTRL+SHIFT+TAB
 
     X WINDOWS+DOWN
-    ALT+TAB
+    X ALT+TAB
     X CTRL+T -> open new tab
     X CTRL+W -> close tab
 
@@ -455,51 +449,57 @@ function openCity(evt, cityName) {
     para jogos e assim?
     \-> assim o menu de tabs não ia ficar tão cheio de coisas :/
 
+    separar buttons de ver videos para uma tab separada ?
+    tab para chrome ALT+<- -> ctrl+t, etc
+
+
+
+
     <div class="parent_shortcut">
         <div class="div1_shortcut">
-            <button class="Shortcuts" id="a" href="#" data-catid-shortcut="a">CTRL+W</button>
+            <button class="Shortcuts" id="CTRL_W" data-catid-shortcut="CTRL_W">CTRL+W</button>
         </div>
         <div class="div2_shortcut">
-            <button class="Shortcuts" id="b" href="#" data-catid-shortcut="b">CTRL+T</button>
+            <button class="Shortcuts" id="CTRL_T" data-catid-shortcut="CTRL_T">CTRL+T</button>
         </div>
         <div class="div3_shortcut">
-            <button class="Shortcuts" id="c" href="#" data-catid-shortcut="c">ESC</button>
+            <button class="Shortcuts" id="ESC" data-catid-shortcut="ESC">ESC</button>
         </div>
         <div class="div4_shortcut">
-            <button class="Shortcuts" id="d" href="#" data-catid-shortcut="d">ALT+TAB</button>
+            <button class="Shortcuts" id="ALT_TAB" data-catid-shortcut="ALT_TAB">ALT+TAB</button>
         </div>
         <div class="div5_shortcut">
-            <button class="Shortcuts" id="e" href="#" data-catid-shortcut="e">CTRL+S+TAB</button>
+            <button class="Shortcuts" id="CTRL_SHIFT_TAB" data-catid-shortcut="CTRL_SHIFT_TAB">CTRL+SHIFT<br>+TAB</button>
         </div>
         <div class="div6_shortcut">
-            <button class="Shortcuts" id="f" href="#" data-catid-shortcut="f">CTRL+TAB</button>
+            <button class="Shortcuts" id="CTRL_TAB" data-catid-shortcut="CTRL_TAB">CTRL+TAB</button>
         </div>
         <div class="div7_shortcut">
-            <button class="Shortcuts" id="g" href="#" data-catid-shortcut="g">CTRL+A</button>
+            <button class="Shortcuts" id="CTRL_A" data-catid-shortcut="CTRL_A">CTRL+A</button>
         </div>
         <div class="div8_shortcut">
-            <button class="Shortcuts" id="t" href="#" data-catid-shortcut="t">WIN+DOWN</button>
+            <button class="Shortcuts" id="WIN_DOWN" data-catid-shortcut="WIN_DOWN">WIN+DOWN</button>
         </div>
         <div class="div9_shortcut">
-            <button class="Shortcuts" id="y" href="#" data-catid-shortcut="y">Vol Up</button>
+            <button class="Shortcuts" id="Vol_Up" data-catid-shortcut="Vol_Up">Vol Up</button>
         </div>
         <div class="div10_shortcut">
-            <button class="Shortcuts" id="u" href="#" data-catid-shortcut="u">CTRL+Z</button>
+            <button class="Shortcuts" id="CTRL_Z" data-catid-shortcut="CTRL_Z">CTRL+Z</button>
         </div>
         <div class="div11_shortcut">
-            <button class="Shortcuts" id="i" href="#" data-catid-shortcut="i">F</button>
+            <button class="Shortcuts" id="F" data-catid-shortcut="F">F</button>
         </div>
         <div class="div12_shortcut">
-            <button class="Shortcuts" id="j" href="#" data-catid-shortcut="j">Vol Down</button>
+            <button class="Shortcuts" id="Vol_Down" data-catid-shortcut="Vol_Down">Vol Down</button>
         </div>
         <div class="div13_shortcut">
-            <button class="Shortcuts" id="m" href="#" data-catid-shortcut="m">J</button>
+            <button class="Shortcuts" id="J" data-catid-shortcut="J">J</button>
         </div>
         <div class="div14_shortcut">
-            <button class="Shortcuts" id="n" href="#" data-catid-shortcut="n">L</button>
+            <button class="Shortcuts" id="L" data-catid-shortcut="L">L</button>
         </div>
         <div class="div15_shortcut">
-            <button class="Shortcuts" id="v" href="#" data-catid-shortcut="v">SPACE</button>
+            <button class="Shortcuts" id="SPACE" data-catid-shortcut="SPACE">SPACE</button>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
