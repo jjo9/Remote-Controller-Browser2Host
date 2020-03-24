@@ -19,6 +19,9 @@ from . import views
 
 app_name = "main"
 
+# to run server outside
+# python manage.py runserver 0.0.0.0:8000
+
 urlpatterns = [
     path("", views.homepage, name="homepage"),  # caminho vazio vai apontar para view homepage
     re_path("^register/?$", views.register, name="register"),

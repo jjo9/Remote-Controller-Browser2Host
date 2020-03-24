@@ -119,6 +119,10 @@ def likePost(request):
             AG.leftClick()
         elif post_id == 'ClickRIGHT':
             AG.rightClick()
+        elif post_id == 'CTRL_ClickLEFT':
+            AG.keyDown('ctrl')
+            AG.leftClick()
+            AG.keyUp('ctrl')
         elif post_id == 'ArrowRIGHT':
             AG.press('right')
         elif post_id == 'ArrowLEFT':
@@ -152,17 +156,19 @@ def likePost(request):
         elif post_id == 'WIN_DOWN':
             AG.hotkey('win', 'down')
         elif post_id == 'Vol_Up':
-            AG.keyDown('fn')
-            AG.press('right')
-            AG.keyUp('fn')
+            for x in range(0,2):
+                AG.keyDown('fn')
+                AG.press('right')
+                AG.keyUp('fn')
         elif post_id == 'CTRL_Z':
             AG.hotkey('ctrl', 'z')
         elif post_id == 'F':
             AG.press('f')
         elif post_id == 'Vol_Down':
-            AG.keyDown('fn')
-            AG.press('left')
-            AG.keyUp('fn')
+            for x in range(0, 2):
+                AG.keyDown('fn')
+                AG.press('left')
+                AG.keyUp('fn')
         elif post_id == 'J':
             AG.press('j')
         elif post_id == 'L':
