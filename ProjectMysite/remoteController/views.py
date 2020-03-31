@@ -156,25 +156,46 @@ def likePost(request):
         elif post_id == 'WIN_DOWN':
             AG.hotkey('win', 'down')
         elif post_id == 'Vol_Up':
-            for x in range(0,2):
-                AG.keyDown('fn')
+            AG.keyDown('fn')
+            for x in range(0, 2):
                 AG.press('right')
-                AG.keyUp('fn')
+            AG.keyUp('fn')
         elif post_id == 'CTRL_Z':
             AG.hotkey('ctrl', 'z')
         elif post_id == 'F':
             AG.press('f')
         elif post_id == 'Vol_Down':
+            AG.keyDown('fn')
             for x in range(0, 2):
-                AG.keyDown('fn')
                 AG.press('left')
-                AG.keyUp('fn')
+            AG.keyUp('fn')
         elif post_id == 'J':
             AG.press('j')
         elif post_id == 'L':
             AG.press('l')
         elif post_id == 'SPACE':
             AG.press('space')
+        elif post_id == 'win_hold':
+            AG.keyDown('win')
+        elif post_id == 'win_release':
+            AG.keyUp('win')
+        elif post_id == 'mouse_hold':
+            AG.mouseDown()
+        elif post_id == 'mouse_release':
+            AG.mouseUp()
+        elif post_id == 'mouse_reset':
+            AG.moveTo(100, 100)
+        elif post_id == 'CTRL_SHIFT_T':
+            AG.hotkey('ctrl', 'shift', 't')
+        elif post_id == 'ALT_LEFT':
+            AG.hotkey('alt', 'left')
+        elif post_id == 'ALT_RIGHT':
+            AG.hotkey('alt', 'right')
+        elif post_id == 'WIN_TAB':
+            AG.hotkey('win', 'tab')
+
+
+
 
         return HttpResponse("Success!")  # Sending an success response
     else:

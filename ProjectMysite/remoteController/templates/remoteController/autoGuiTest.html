@@ -103,6 +103,32 @@ grid-row-gap: 10px;
 .div14_shortcut { grid-area: 5 / 2 / 6 / 3; }
 .div15_shortcut { grid-area: 5 / 3 / 6 / 4; }
 
+/* Moving Grid */
+
+.parent_moving {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+}
+
+.div1_moving { grid-area: 1 / 1 / 2 / 2; }
+.div2_moving { grid-area: 1 / 2 / 2 / 3; }
+.div3_moving { grid-area: 1 / 3 / 2 / 4; }
+.div4_moving { grid-area: 2 / 1 / 3 / 2; }
+.div5_moving { grid-area: 2 / 2 / 3 / 3; }
+.div6_moving { grid-area: 2 / 3 / 3 / 4; }
+.div7_moving { grid-area: 3 / 1 / 4 / 2; }
+.div8_moving { grid-area: 3 / 2 / 4 / 3; }
+.div9_moving { grid-area: 3 / 3 / 4 / 4; }
+.div10_moving { grid-area: 4 / 1 / 5 / 2; }
+.div11_moving { grid-area: 4 / 2 / 5 / 3; }
+.div12_moving { grid-area: 4 / 3 / 5 / 4; }
+.div13_moving { grid-area: 5 / 1 / 6 / 2; }
+.div14_moving { grid-area: 5 / 2 / 6 / 3; }
+.div15_moving { grid-area: 5 / 3 / 6 / 4; }
+
 
 /* Mouse Button Circles */
 
@@ -129,6 +155,17 @@ grid-row-gap: 10px;
 /* Shortcuts Button Circles */
 
 .Shortcuts {
+  font-size:37px;
+  display:block;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+/* Moving Button Circles */
+
+.Moving {
   font-size:37px;
   display:block;
   height: 250px;
@@ -177,14 +214,6 @@ grid-row-gap: 10px;
 
 
 
-
-
-
-
-
-
-
-
 </style>
 <!--<meta name="viewport" content="width=device-width, user-scalable=no">-->
 <meta name="viewport" content="width=device-width, initial-scale=0.35, maximum-scale=0.35, user-scalable=no"/>
@@ -194,7 +223,8 @@ grid-row-gap: 10px;
         <ul class="tabs tabs-transparent">
             <li class="tab"><a href="#keyboardTab" onclick="openCity(event, 'keyboardTab')">keyboardTab</a></li>
             <li class="tab"><a href="#mouseTab" onclick="openCity(event, 'mouseTab')">mouseTab</a></li>
-            <li class="tab"><a href="#shorcutsTab" onclick="openCity(event, 'shorcutsTab')">shorcutsTab</a></li>
+            <li class="tab"><a href="#shortcutsTab" onclick="openCity(event, 'shortcutsTab')">shortcutsTab</a></li>
+            <li class="tab"><a href="#movingTab" onclick="openCity(event, 'movingTab')">movingTab</a></li>
         </ul>
     </div>
 </nav>
@@ -213,9 +243,6 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
-
-
 
 
 
@@ -314,16 +341,6 @@ function openCity(evt, cityName) {
 
 
 
-
-
-
-
-
-
-
-
-
-
     </script>
 
 
@@ -351,16 +368,6 @@ function openCity(evt, cityName) {
     slider.oninput = function() {
       output.innerHTML = this.value;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -421,8 +428,8 @@ function openCity(evt, cityName) {
     </script>
 </div>
 
-<div id="shorcutsTab" class="tabcontent">
-    <h1>Shorcuts</h1>
+<div id="shortcutsTab" class="tabcontent">
+    <h1>Shortcuts</h1>
 
     X ESC -> por no keyboard
     X SPACE -> por no keyboard também ?
@@ -456,8 +463,10 @@ function openCity(evt, cityName) {
     separar buttons de ver videos para uma tab separada ?
     tab para chrome ALT+<- -> ctrl+t, etc
 
-
-
+    VOL up and down not working
+    add windows + all arrow directions
+    add click and hold / release
+    info tab -> is pyautogui online ? / where is the god damn mouse !?!?!
 
     <div class="parent_shortcut">
         <div class="div1_shortcut">
@@ -482,7 +491,7 @@ function openCity(evt, cityName) {
             <button class="Shortcuts" id="CTRL_A" data-catid-shortcut="CTRL_A">CTRL+A</button>
         </div>
         <div class="div8_shortcut">
-            <button class="Shortcuts" id="WIN_DOWN" data-catid-shortcut="WIN_DOWN">WIN+DOWN</button>
+            <button class="Shortcuts" id="CTRL_SHIFT_T" data-catid-shortcut="CTRL_SHIFT_T">CTRL+SHIFT<br>+T</button>
         </div>
         <div class="div9_shortcut">
             <button class="Shortcuts" id="Vol_Up" data-catid-shortcut="Vol_Up">Vol Up</button>
@@ -511,6 +520,62 @@ function openCity(evt, cityName) {
     $('.Shortcuts').click(function(){
     var catid;
     catid = $(this).attr("data-catid-shortcut");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost",
+        data:{
+            post_id: catid,
+        },
+        success: function( data )
+        {
+            //$( '#like'+ catid ).remove();
+            //$( '#message' ).text(data);
+        }
+     })
+    });
+    </script>
+
+</div>
+
+<div id="movingTab" class="tabcontent">
+    <h1>Moving</h1>
+
+    <div class="parent_moving">
+        <div class="div1_moving">
+            <button class="Moving" id="win_hold" data-catid-moving="win_hold">win_hold</button>
+        </div>
+        <div class="div2_moving">
+            <button class="Moving" id="win_release" data-catid-moving="win_release">win_release</button>
+        </div>
+        <div class="div3_moving">
+            <button class="Moving" id="mouse_hold" data-catid-moving="mouse_hold">mouse_hold</button>
+        </div>
+        <div class="div4_moving">
+            <button class="Moving" id="mouse_release" data-catid-moving="mouse_release">mouse_release</button>
+        </div>
+        <div class="div5_moving">
+            <button class="Moving" id="mouse_reset" data-catid-moving="mouse_reset">mouse_reset</button>
+        </div>
+        <div class="div6_moving">
+            <button class="Moving" id="WIN_DOWN" data-catid-moving="WIN_DOWN">WIN+DOWN</button>
+        </div>
+        <div class="div7_moving">
+            <button class="Moving" id="ALT_LEFT" data-catid-moving="ALT_LEFT">ALT_LEFT</button>
+        </div>
+        <div class="div8_moving">
+            <button class="Moving" id="ALT_RIGHT" data-catid-moving="ALT_RIGHT">ALT_RIGHT</button>
+        </div>
+        <div class="div9_moving">
+            <button class="Moving" id="WIN_TAB" data-catid-moving="WIN_TAB">WIN_TAB</button>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('.Moving').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid-moving");
     $.ajax(
     {
         type:"GET",
