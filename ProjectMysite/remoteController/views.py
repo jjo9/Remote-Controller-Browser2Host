@@ -17,44 +17,10 @@ def homepage(request):
                   context={})
 
 
-@login_required(login_url='/login/')
-def account(request):
-    # if not request.user.is_authenticated:
-    #     return redirect(to="remoteController:login")
-    # else:
-    return render(request=request,
-                  template_name="remoteController/account.html",
-                  # context={"categories":TutorialCategory.objects.all}
-                  )
-
-
-def register(request):
-    if request.method == "POST":  # para apanhar o submit depois de carregar no botão
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()  # aqui criamos o user
-            # agora depois de registar temos que o logar automaticamente
-            username = form.cleaned_data.get('username')
-            messages.success(request=request,
-                             message=f"New Account Created {username}")
-            login(request, user)
-            messages.info(request=request, message=f"You are now logged in as {username}")
-            return redirect(
-                to="remoteController:homepage")
-        else:
-            for msg in form.error_messages:
-                messages.error(request=request, message=f"{msg}: {form.error_messages[msg]}")
-
-    form = NewUserForm
-    return render(request=request,
-                  template_name="remoteController/register.html",
-                  context={"form": form})
-
-
 def logout_request(request):
     logout(request=request)
     messages.info(request=request, message="Logged out successfully!")
-    return redirect(to="remoteController:homepage")
+    return redirect(to="main:homepage")
 
 
 def login_request(request):
@@ -68,7 +34,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request=request, message="Logged in successfully!")
-                return redirect("remoteController:homepage")
+                return redirect("main:homepage")
             else:
                 messages.error(request, "Invalid username or password")
         else:
@@ -80,12 +46,12 @@ def login_request(request):
                   context={"form": form})
 
 
+# @login_required(login_url='/login/') # uncomment to add authentication
 def autoGuiTest(request):
-    print("moved")
-    # AG.moveTo(100, 200)
     return render(request, 'remoteController/autoGuiTest.html')
 
 
+# @login_required(login_url='/login/') # uncomment to add authentication
 def likePost(request):
     if request.method == 'GET':
         try:
@@ -193,9 +159,6 @@ def likePost(request):
             AG.hotkey('alt', 'right')
         elif post_id == 'WIN_TAB':
             AG.hotkey('win', 'tab')
-
-
-
 
         return HttpResponse("Success!")  # Sending an success response
     else:

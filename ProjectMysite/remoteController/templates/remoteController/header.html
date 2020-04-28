@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    {% load static %} <!-- aqui vamos importar o css que o tinymce já tinha -->
-    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <!-- https://materializecss.com/grid.html e os outros ...-->
+    {% load static %}
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
@@ -22,6 +20,6 @@
     {% endblock %}
   </div>
 </body>
-<script src="{% static 'tinymce/js/prism.js' %}"></script>
+
 <script>M.AutoInit();</script>
 </html>
