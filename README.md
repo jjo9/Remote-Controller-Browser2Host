@@ -1,7 +1,7 @@
 # Remote-Controller-Browser2Host
 Control the webservice host through a web browser
 
-Installation steps:\
+<b>Installation steps:</b>\
 To create a new secret key
 
 ```
@@ -11,11 +11,37 @@ Path for "secret_secrets.txt" should be "ProjectRootFolder/ProjectMysite/secret_
 In other words, it should be right next to "manage.py" (aka in same location/folder of the file "manage.py")
 ```
 
-run: python manage.py runserver 0.0.0.0:8000
+run: <b>python manage.py runserver 0.0.0.0:8000</b>
 
 To access the website go to a browser and type in the host ip address followed by the port that the server is running on.\
 example:\
-http://192.168.1.20:8000/
+<b>http://192.168.1.20:8000/</b>
+
+## Authentication 
+
+To add authentication do the following:
+
+To add a user that can be used to login, simply run the following command
+
+<b>python manage.py createsuperuser</b>
+
+In the file <b>"ProjectMysite/remoteController/views.py" </b> \
+Uncomment 2 lines with <b>"@login_required(login_url='/login/')"</b> so that only requests made by a logged user are valid
+
+The lines are located above the following functions
+
+```python
+@login_required(login_url='/login/')
+def likePost(request):
+
+@login_required(login_url='/login/')
+def autoGuiTest(request):
+```
+(To remove authentication just comment those 2 lines)\
+Now just login to use the controller
+
+User management can be done in:\
+<b>http://website_ip:8000/admin</b>
 
 Powered By:
 
